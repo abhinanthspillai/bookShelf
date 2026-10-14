@@ -1,5 +1,6 @@
 import { StatusBadge } from './StatusBadge.jsx';
 import { StatusSelect } from './StatusSelect.jsx';
+import { formatAddedDate, formatFullDateTime } from '../utils/formatAddedDate.js';
 import { Trash2 } from 'lucide-react';
 
 /**
@@ -34,6 +35,9 @@ export function BookCard({
     .slice(0, 2)
     .map(w => w[0]?.toUpperCase())
     .join('');
+
+  const addedDate = formatAddedDate(book.createdAt);
+  const fullDateTime = formatFullDateTime(book.createdAt);
 
   return (
     <article
@@ -72,6 +76,14 @@ export function BookCard({
             <p className="text-muted text-sm mt-0.5 line-clamp-1 break-words">
               by <span className="text-ink/80 font-medium">{book.author}</span>
             </p>
+            {addedDate && (
+              <p
+                title={fullDateTime || undefined}
+                className="text-xs text-muted/80 mt-1 cursor-default"
+              >
+                {addedDate}
+              </p>
+            )}
           </div>
         </div>
       </div>
