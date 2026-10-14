@@ -103,10 +103,10 @@ export default function App() {
                   <button
                     type="button"
                     onClick={() => setStatusFilter('all')}
-                    className={`min-h-[38px] px-3.5 py-1.5 text-xs font-medium rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                    className={`min-h-[44px] px-4 py-2 text-xs font-semibold rounded-full transition-all cursor-pointer whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-gold ${
                       statusFilter === 'all'
                         ? 'bg-ink text-white shadow-sm'
-                        : 'bg-white text-muted hover:text-ink border border-border'
+                        : 'bg-white text-muted hover:text-ink border border-border hover:bg-cream'
                     }`}
                   >
                     All
@@ -116,10 +116,10 @@ export default function App() {
                       key={s.value}
                       type="button"
                       onClick={() => setStatusFilter(s.value)}
-                      className={`min-h-[38px] px-3.5 py-1.5 text-xs font-medium rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                      className={`min-h-[44px] px-4 py-2 text-xs font-semibold rounded-full transition-all cursor-pointer whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-gold ${
                         statusFilter === s.value
                           ? 'bg-ink text-white shadow-sm'
-                          : 'bg-white text-muted hover:text-ink border border-border'
+                          : 'bg-white text-muted hover:text-ink border border-border hover:bg-cream'
                       }`}
                     >
                       {s.label}

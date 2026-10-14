@@ -38,7 +38,7 @@ export function BookCard({
   return (
     <article
       aria-label={`Book: ${book.title} by ${book.author}`}
-      className="bg-surface rounded-card border border-border p-5 shadow-soft hover:shadow-lift transition-all duration-200 flex flex-col justify-between group"
+      className="bg-surface rounded-card border border-border p-5 sm:p-6 shadow-soft hover:shadow-lift hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between group"
     >
       <div>
         <div className="flex items-start gap-4">
