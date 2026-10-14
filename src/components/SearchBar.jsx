@@ -4,7 +4,7 @@ export function SearchBar({
   value = '',
   onChange,
   onClear,
-  placeholder = 'Search by title or author...',
+  placeholder = 'Search by title or author',
 }) {
   return (
     <div className="relative w-full">
@@ -20,7 +20,7 @@ export function SearchBar({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full min-h-[44px] pl-10 pr-10 py-2.5 text-sm bg-surface border border-border rounded-xl text-ink placeholder:text-muted/60
+        className="w-full min-h-[44px] pl-10 pr-10 py-2.5 text-sm bg-surface border border-border rounded-xl text-ink placeholder:text-muted
           focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold shadow-sm transition-all"
       />
       {value && (
