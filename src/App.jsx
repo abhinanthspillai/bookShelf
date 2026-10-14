@@ -98,14 +98,15 @@ export default function App() {
                 <div
                   className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none"
                   role="group"
-                  aria-label="Filter books by status"
+                  aria-label="Filter books by status chips"
                 >
                   <button
                     type="button"
                     onClick={() => setStatusFilter('all')}
+                    aria-pressed={statusFilter === 'all'}
                     className={`min-h-[44px] px-4 py-2 text-xs font-semibold rounded-full transition-all cursor-pointer whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-gold ${
                       statusFilter === 'all'
-                        ? 'bg-ink text-white shadow-sm'
+                        ? 'bg-ink text-white shadow-sm ring-2 ring-ink/20'
                         : 'bg-white text-muted hover:text-ink border border-border hover:bg-cream'
                     }`}
                   >
@@ -116,9 +117,10 @@ export default function App() {
                       key={s.value}
                       type="button"
                       onClick={() => setStatusFilter(s.value)}
+                      aria-pressed={statusFilter === s.value}
                       className={`min-h-[44px] px-4 py-2 text-xs font-semibold rounded-full transition-all cursor-pointer whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-gold ${
                         statusFilter === s.value
-                          ? 'bg-ink text-white shadow-sm'
+                          ? 'bg-ink text-white shadow-sm ring-2 ring-ink/20'
                           : 'bg-white text-muted hover:text-ink border border-border hover:bg-cream'
                       }`}
                     >
@@ -134,12 +136,11 @@ export default function App() {
             books={displayedBooks}
             onStatusChange={updateBookStatus}
             onDeleteRequest={setBookToDelete}
-            isSearching={isSearching}
             searchQuery={searchQuery}
-            onClearSearch={() => {
-              setSearchQuery('');
-              setStatusFilter('all');
-            }}
+            statusFilter={statusFilter}
+            statusLabel={STATUSES.find(s => s.value === statusFilter)?.label || ''}
+            onClearSearch={() => setSearchQuery('')}
+            onResetFilter={() => setStatusFilter('all')}
           />
         </div>
       </div>

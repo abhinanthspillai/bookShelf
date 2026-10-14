@@ -16,9 +16,6 @@ export function CountsSummary({
       suffix: counts.total === 1 ? 'book' : 'books',
       icon: Library,
       colorClass: 'text-ink',
-      bgClass: 'bg-white',
-      borderClass: 'border-border',
-      activeRing: 'ring-2 ring-ink',
     },
     {
       id: 'to-read',
@@ -27,9 +24,6 @@ export function CountsSummary({
       suffix: 'to read',
       icon: Clock,
       colorClass: 'text-slate-700',
-      bgClass: 'bg-white',
-      borderClass: 'border-border',
-      activeRing: 'ring-2 ring-slate-600',
     },
     {
       id: 'reading',
@@ -38,9 +32,6 @@ export function CountsSummary({
       suffix: 'reading',
       icon: BookOpen,
       colorClass: 'text-gold',
-      bgClass: 'bg-white',
-      borderClass: 'border-border',
-      activeRing: 'ring-2 ring-gold',
     },
     {
       id: 'finished',
@@ -49,9 +40,6 @@ export function CountsSummary({
       suffix: 'finished',
       icon: BookCheck,
       colorClass: 'text-emerald-700',
-      bgClass: 'bg-white',
-      borderClass: 'border-border',
-      activeRing: 'ring-2 ring-emerald-600',
     },
   ];
 
@@ -65,8 +53,12 @@ export function CountsSummary({
         </span>
       </div>
 
-      {/* Responsive Cards Row */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      {/* Responsive Cards Row as interactive filter controls */}
+      <div
+        className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
+        role="group"
+        aria-label="Filter by reading status cards"
+      >
         {stats.map(stat => {
           const Icon = stat.icon;
           const isActive = activeFilter === stat.id;
@@ -77,12 +69,14 @@ export function CountsSummary({
               type="button"
               onClick={() => onFilterChange && onFilterChange(stat.id)}
               aria-pressed={isActive}
-              className={`p-4 rounded-card border ${stat.borderClass} ${stat.bgClass} shadow-soft hover:shadow-lift transition-all text-left flex flex-col justify-between cursor-pointer min-h-[88px] ${
-                isActive ? `${stat.activeRing} shadow-md` : ''
+              className={`p-4 rounded-card border transition-all text-left flex flex-col justify-between cursor-pointer min-h-[92px] hover:-translate-y-0.5 hover:shadow-lift focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 ${
+                isActive
+                  ? 'border-ink bg-white shadow-lift ring-2 ring-ink/10'
+                  : 'border-border bg-white shadow-soft hover:border-gold/50'
               }`}
             >
               <div className="flex items-center justify-between w-full mb-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted">
+                <span className={`text-xs font-semibold uppercase tracking-wider ${isActive ? 'text-ink' : 'text-muted'}`}>
                   {stat.label}
                 </span>
                 <Icon className={`w-4 h-4 ${stat.colorClass}`} aria-hidden="true" />

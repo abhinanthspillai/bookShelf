@@ -5,17 +5,29 @@ export function BookList({
   books = [],
   onStatusChange,
   onDeleteRequest,
-  isSearching = false,
   searchQuery = '',
+  statusFilter = 'all',
+  statusLabel = '',
   onClearSearch,
+  onResetFilter,
 }) {
   if (books.length === 0) {
-    if (isSearching) {
+    if (searchQuery.trim()) {
       return (
         <EmptyState
           type="search"
           query={searchQuery}
+          statusLabel={statusFilter !== 'all' ? statusLabel : ''}
           onClearSearch={onClearSearch}
+        />
+      );
+    }
+    if (statusFilter !== 'all') {
+      return (
+        <EmptyState
+          type="filter"
+          statusLabel={statusLabel}
+          onResetFilter={onResetFilter}
         />
       );
     }
