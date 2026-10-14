@@ -80,11 +80,11 @@ export function BookCard({
       <div className="mt-5 pt-3.5 border-t border-border/70 flex items-center justify-between gap-3">
         <label
           htmlFor={`status-select-${book.id}`}
-          className="text-xs font-medium text-muted whitespace-nowrap"
+          className="text-xs font-semibold uppercase tracking-wider text-muted whitespace-nowrap"
         >
-          Status:
+          Status
         </label>
-        <div className="w-36 sm:w-40">
+        <div className="w-36 sm:w-44">
           <StatusSelect
             id={`status-select-${book.id}`}
             value={book.status}
