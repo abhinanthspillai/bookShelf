@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Search, X } from 'lucide-react';
 
 export function SearchBar({
@@ -6,6 +7,20 @@ export function SearchBar({
   onClear,
   placeholder = 'Search by title or author',
 }) {
+  const inputRef = useRef(null);
+
+  const handleClear = () => {
+    onClear();
+    inputRef.current?.focus();
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape' && value) {
+      e.preventDefault();
+      onClear();
+    }
+  };
+
   return (
     <div className="relative w-full">
       <label htmlFor="book-search-input" className="sr-only">
@@ -15,20 +30,22 @@ export function SearchBar({
         <Search className="w-4 h-4" aria-hidden="true" />
       </div>
       <input
+        ref={inputRef}
         id="book-search-input"
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        className="w-full min-h-[44px] pl-10 pr-10 py-2.5 text-sm bg-surface border border-border rounded-xl editorial-input
+        className="w-full min-h-[44px] pl-10 pr-12 py-2.5 text-sm bg-surface border border-border rounded-xl editorial-input
           focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold shadow-sm transition-all"
       />
       {value && (
         <button
           type="button"
-          onClick={onClear}
+          onClick={handleClear}
           aria-label="Clear search"
-          className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted hover:text-ink min-w-[44px] justify-center transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold rounded-r-xl"
+          className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted hover:text-ink min-w-[44px] min-h-[44px] justify-center transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold rounded-r-xl"
         >
           <X className="w-4 h-4" aria-hidden="true" />
         </button>
