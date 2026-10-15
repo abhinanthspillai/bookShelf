@@ -28,6 +28,9 @@ export default {
           subtle: '#FDF7ED',
           border: '#ECD5AE',
         },
+        placeholder: {
+          DEFAULT: '#70685C',
+        },
       },
       fontFamily: {
         serif: ['"DM Serif Display"', '"Playfair Display"', 'Georgia', 'serif'],

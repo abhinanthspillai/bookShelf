@@ -82,11 +82,11 @@ export function BookForm({ onAddBook }) {
               type="text"
               value={title}
               onChange={handleTitleChange}
-              placeholder="e.g. Aadujeevitham"
+              placeholder="e.g. The Alchemist"
               aria-required="true"
               aria-invalid={Boolean(errors.title)}
               aria-describedby={errors.title ? 'title-error' : undefined}
-              className={`w-full min-h-[44px] px-3.5 py-2.5 text-sm bg-cream/40 border rounded-xl text-ink placeholder:text-muted
+              className={`w-full min-h-[44px] px-3.5 py-2.5 text-sm bg-cream/40 border rounded-xl editorial-input
                 focus:bg-white focus:outline-none focus:ring-2 transition-all ${
                   errors.title
                     ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
@@ -115,11 +115,11 @@ export function BookForm({ onAddBook }) {
               type="text"
               value={author}
               onChange={handleAuthorChange}
-              placeholder="e.g. Benyamin"
+              placeholder="e.g. Paulo Coelho"
               aria-required="true"
               aria-invalid={Boolean(errors.author)}
               aria-describedby={errors.author ? 'author-error' : undefined}
-              className={`w-full min-h-[44px] px-3.5 py-2.5 text-sm bg-cream/40 border rounded-xl text-ink placeholder:text-muted
+              className={`w-full min-h-[44px] px-3.5 py-2.5 text-sm bg-cream/40 border rounded-xl editorial-input
                 focus:bg-white focus:outline-none focus:ring-2 transition-all ${
                   errors.author
                     ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
