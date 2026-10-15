@@ -1,34 +1,15 @@
 import { StatusBadge } from './StatusBadge.jsx';
 import { StatusSelect } from './StatusSelect.jsx';
 import { formatAddedDate, formatFullDateTime } from '../utils/formatAddedDate.js';
+import { coverTint } from '../utils/coverTint.js';
 import { Trash2 } from 'lucide-react';
-
-/**
- * Deterministically generates an editorial gradient style based on book title string.
- */
-function getBookGradient(title = '') {
-  const gradients = [
-    'from-[#E8DFD1] via-[#D5C7B2] to-[#B8812E]/30 text-[#6B5024]',
-    'from-[#E3E8E1] via-[#CAD6C6] to-[#7B9274]/30 text-[#3F5438]',
-    'from-[#E7E2DC] via-[#D6CDCE] to-[#8C6D68]/30 text-[#543D39]',
-    'from-[#F0E6D2] via-[#E2D2B3] to-[#C99C49]/40 text-[#73531A]',
-    'from-[#DFE5EA] via-[#CAD4DE] to-[#6C849B]/30 text-[#36495A]',
-  ];
-  let hash = 0;
-  for (let i = 0; i < title.length; i++) {
-    hash = (hash << 5) - hash + title.charCodeAt(i);
-    hash |= 0;
-  }
-  const index = Math.abs(hash) % gradients.length;
-  return gradients[index];
-}
 
 export function BookCard({
   book,
   onStatusChange,
   onDeleteRequest,
 }) {
-  const gradientClass = getBookGradient(book.title);
+  const tint = coverTint(book.title);
   const initials = (book.title || '')
     .split(' ')
     .filter(Boolean)
@@ -48,7 +29,7 @@ export function BookCard({
         <div className="flex items-start gap-4">
           {/* Editorial Generated Book Tile */}
           <div
-            className={`w-14 h-20 rounded-lg bg-gradient-to-br ${gradientClass} flex-shrink-0 flex items-center justify-center border border-border/80 shadow-inner select-none font-serif text-lg font-bold`}
+            className={`w-14 h-20 rounded-lg bg-gradient-to-br ${tint.gradientClass} ${tint.textClass} flex-shrink-0 flex items-center justify-center border ${tint.borderClass} shadow-inner select-none font-serif text-lg font-bold`}
             aria-hidden="true"
           >
             <span>{initials || 'BK'}</span>
